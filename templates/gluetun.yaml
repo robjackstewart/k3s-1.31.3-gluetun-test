@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: gluetun
+spec:
+  selector:
+    matchLabels:
+      app: transmission
+  template:
+    metadata:
+      labels:
+        app: transmission
+    spec:
+      containers:
+        - name: gluetun
+          image: ghcr.io/qdm12/gluetun:latest
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+          env:
+            - name: VPN_SERVICE_PROVIDER
+              value: mullvad
+            - name: VPN_TYPE
+              value: openvpn
+            - name: OPENVPN_USER
+              value: # redacted
+            - name: OPENVPN_PASSWORD
+              value: m
+            - name: SERVER_COUNTRIES
+              value: UK
+            - name: OWNED_ONLY
+              value: 'yes'

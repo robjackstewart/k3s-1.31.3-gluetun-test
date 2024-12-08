@@ -1,0 +1,4 @@
+apiVersion: v2
+name: k3s-1.31.3-test
+version: 0.0.1
+appVersion: v0.0.1
